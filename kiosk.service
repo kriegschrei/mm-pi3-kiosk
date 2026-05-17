@@ -1,0 +1,15 @@
+[Unit]
+Description=MagicMirror Kiosk Application Service
+After=network.target network-online.target systemd-time-wait-sync.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kriegschrei
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/xinit /home/kriegschrei/start-kiosk.sh -- -nocursor
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
